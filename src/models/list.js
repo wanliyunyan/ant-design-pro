@@ -5,6 +5,7 @@ export default {
 
   state: {
     list: [],
+    search:""
   },
 
   effects: {
@@ -35,6 +36,12 @@ export default {
       return {
         ...state,
         list: state.list.concat(action.payload),
+      };
+    },
+    save(state, {payload}) {
+      return {
+        ...state,
+        search: payload
       };
     },
   },

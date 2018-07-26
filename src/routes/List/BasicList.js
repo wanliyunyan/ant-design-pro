@@ -14,6 +14,7 @@ import {
   Dropdown,
   Menu,
   Avatar,
+  Tag
 } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -43,6 +44,7 @@ export default class BasicList extends PureComponent {
     const {
       list: { list },
       loading,
+      dispatch
     } = this.props;
 
     const Info = ({ title, value, bordered }) => (
@@ -60,7 +62,14 @@ export default class BasicList extends PureComponent {
           <RadioButton value="progress">进行中</RadioButton>
           <RadioButton value="waiting">等待中</RadioButton>
         </RadioGroup>
-        <Search className={styles.extraContentSearch} placeholder="请输入" onSearch={() => ({})} />
+        <Search className={styles.extraContentSearch} placeholder="请输入" onSearch={() => ({})}
+          onChange={(e)=>{
+            dispatch({
+              type:"list/save",
+              payload:e.target.value
+            })
+          }}
+        />
       </div>
     );
 
@@ -79,6 +88,7 @@ export default class BasicList extends PureComponent {
         </div>
         <div className={styles.listContentItem}>
           <span>开始时间</span>
+          <Tag>render时这里会闪烁</Tag>
           <p>{moment(createdAt).format('YYYY-MM-DD HH:mm')}</p>
         </div>
         <div className={styles.listContentItem}>
