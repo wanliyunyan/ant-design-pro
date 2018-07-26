@@ -158,6 +158,7 @@ export default class BasicList extends PureComponent {
                     description={item.subDescription}
                   />
                   <ListContent data={item} />
+                  <Tag>render时这里不会闪烁</Tag>
                 </List.Item>
               )}
             />
